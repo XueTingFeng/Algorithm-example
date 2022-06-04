@@ -1,6 +1,4 @@
-package com.atguigu;
-
-import com.sun.jmx.remote.internal.ArrayQueue;
+package com.atguigu.queue;
 
 import java.util.Scanner;
 
