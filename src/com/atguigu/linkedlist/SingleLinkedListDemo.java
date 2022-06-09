@@ -1,5 +1,7 @@
 package com.atguigu.linkedlist;
 
+import java.util.Stack;
+
 /**
  * @author shkstart
  * @create 2022-06-05 20:35
@@ -35,6 +37,26 @@ public class SingleLinkedListDemo {
         System.out.println();
         HeroNode res = findLastNode(singleLinkedList.getHead(),1);
         System.out.println("倒数的节点" + res);
+
+        System.out.println();
+        reverseList(singleLinkedList.getHead());
+        singleLinkedList.list();
+
+        System.out.println();
+        reversePrint(singleLinkedList.getHead());
+
+        //测试合并单链表
+        System.out.println();
+        System.out.println("合并的单链表");
+        SingleLinkedList singleLinkedList1 = new SingleLinkedList();
+        HeroNode hero5 = new HeroNode(1,"a","a");
+        HeroNode hero6 = new HeroNode(2,"b","b");
+        HeroNode hero7 = new HeroNode(4,"c","c");
+        singleLinkedList1.add(hero5);
+        singleLinkedList1.add(hero6);
+        singleLinkedList1.add(hero7);
+        SingleLinkedList res1 = concatList(singleLinkedList.getHead(),singleLinkedList1.getHead());
+        res1.list();
     }
 
     //查找倒数第k个节点+
@@ -90,14 +112,66 @@ public class SingleLinkedListDemo {
         HeroNode next = null; //用于保存next
         HeroNode reverseHead = new HeroNode(0,"","");
 
-        while (cur!=null){
+        while (cur != null){
             next = cur.next;//暂时保存下一个节点
-            cur.next = reverseHead.next;//将cur的下一个节点指向新的链表最前端
+            cur.next = reverseHead.next;//将cur的下一个节点指向新 的链表最前端
             reverseHead.next = cur;//将cur链接到新的链表上
             cur = next;//让cur后移
         }
         //将head.next 指向reverseHead.next 实现链表的反转
         head.next = reverseHead.next;
+    }
+
+    //反向打印链表 将节点压入栈中
+    public static void reversePrint(HeroNode head){
+        if(head.next == null){
+            return;
+        }
+
+        //创建栈
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode cur = head.next;
+
+        //将所有节点压入栈
+        while (cur != null){
+            stack.push(cur);
+            cur = cur.next;//cur后移
+        }
+
+        //弹出栈
+        while (stack.size() > 0){
+            System.out.println(stack.pop());
+        }
+    }
+
+    //课后练习
+    //合并两个有序单链表，合并以后依然有序
+    public static SingleLinkedList concatList(HeroNode list1Head,HeroNode list2Head){
+        HeroNode newListHead = new HeroNode(0,"","");
+        SingleLinkedList singleLinkedList = new SingleLinkedList();
+        HeroNode cur = newListHead.next;
+        HeroNode cur1 = list1Head.next; //list1第一个节点,辅助变量保存当前节点
+        HeroNode cur2 = list2Head.next; //list2 第一个节点,辅助变量保存当前节点
+
+        if(cur1 == null && cur2 == null){
+            return null;
+        }
+
+        while (cur1 != null && cur2 != null){
+            if(cur1.no <= cur2.no){
+                cur = cur1;
+                singleLinkedList.add(cur);
+                singleLinkedList.list();
+                cur1 = cur1.next;
+            } else {
+                cur = cur2;
+                singleLinkedList.add(cur);
+                singleLinkedList.list();
+                cur2 = cur2.next;
+            }
+
+        }
+        return singleLinkedList;
     }
 }
 
@@ -275,7 +349,7 @@ class HeroNode{
                 "no=" + no +
                 ", name='" + name + '\'' +
                 ", nickname='" + nickname + '\'' +
-
+                    //next +
                 '}';
     }
 }
