@@ -45,17 +45,25 @@ public class SingleLinkedListDemo {
         System.out.println();
         reversePrint(singleLinkedList.getHead());
 
-        //测试合并单链表
+        //测试合并两个有序单链表
         System.out.println();
-        System.out.println("合并的单链表");
+        System.out.println("合并两个有序单链表");
         SingleLinkedList singleLinkedList1 = new SingleLinkedList();
         HeroNode hero5 = new HeroNode(1,"a","a");
         HeroNode hero6 = new HeroNode(2,"b","b");
-        HeroNode hero7 = new HeroNode(4,"c","c");
+        HeroNode hero7 = new HeroNode(3,"c","c");
         singleLinkedList1.add(hero5);
         singleLinkedList1.add(hero6);
         singleLinkedList1.add(hero7);
-        SingleLinkedList res1 = concatList(singleLinkedList.getHead(),singleLinkedList1.getHead());
+
+        SingleLinkedList singleLinkedList2 = new SingleLinkedList();
+        HeroNode hero8 = new HeroNode(1,"d","d");
+        HeroNode hero9 = new HeroNode(2,"e","e");
+        HeroNode hero10 = new HeroNode(3,"f","f");
+        singleLinkedList2.add(hero8);
+        singleLinkedList2.add(hero9);
+        singleLinkedList2.add(hero10);
+        SingleLinkedList res1 = concatList(singleLinkedList1,singleLinkedList2);
         res1.list();
     }
 
@@ -146,32 +154,31 @@ public class SingleLinkedListDemo {
 
     //课后练习
     //合并两个有序单链表，合并以后依然有序
-    public static SingleLinkedList concatList(HeroNode list1Head,HeroNode list2Head){
-        HeroNode newListHead = new HeroNode(0,"","");
-        SingleLinkedList singleLinkedList = new SingleLinkedList();
-        HeroNode cur = newListHead.next;
-        HeroNode cur1 = list1Head.next; //list1第一个节点,辅助变量保存当前节点
-        HeroNode cur2 = list2Head.next; //list2 第一个节点,辅助变量保存当前节点
+    public static SingleLinkedList concatList(SingleLinkedList l1,SingleLinkedList l2) {
+       SingleLinkedList singleLinkedList = new SingleLinkedList();
+       HeroNode cur = singleLinkedList.getHead();
+       HeroNode l1cur = l1.getHead().next;
+       HeroNode l2cur = l2.getHead().next;
 
-        if(cur1 == null && cur2 == null){
-            return null;
-        }
+       while (l1cur != null && l2cur != null){
+           if(l1cur.no <= l2cur.no){
+               cur.next = l1cur;
+               l1cur = l1cur.next;
+//               System.out.println("上面的if");
+//               singleLinkedList.list();
+           }else{
+               cur.next = l2cur;
+               l2cur = l2cur.next;
+//               System.out.println("下面的if");
+//               singleLinkedList.list();
+           }
+           cur = cur.next;
+       }
 
-        while (cur1 != null && cur2 != null){
-            if(cur1.no <= cur2.no){
-                cur = cur1;
-                singleLinkedList.add(cur);
-                singleLinkedList.list();
-                cur1 = cur1.next;
-            } else {
-                cur = cur2;
-                singleLinkedList.add(cur);
-                singleLinkedList.list();
-                cur2 = cur2.next;
-            }
-
-        }
-        return singleLinkedList;
+       // && 要两个都为true才进入循环 其中一个等于null了，有条链表剩下一个节点
+        //使用 || 数值无法与null比较，报异常
+        cur.next = l1cur == null ? l2cur : l1cur;
+       return singleLinkedList;
     }
 }
 
@@ -349,7 +356,7 @@ class HeroNode{
                 "no=" + no +
                 ", name='" + name + '\'' +
                 ", nickname='" + nickname + '\'' +
-                    //next +
+              //  ", next='" + next +
                 '}';
     }
 }
