@@ -2,7 +2,9 @@ package com.atguigu.stack;
 
 public class Calculator {
     public static void main(String[] args) {
-        String expression = "3+2*6-2";
+        //String expression = "3+2*6-2";
+        //String expression = "30+20*6-2";
+        String expression = "7-2*3+1";
         ArrayStack2 numStack = new ArrayStack2(10);
         ArrayStack2 operStack = new ArrayStack2(10);
 
@@ -12,6 +14,7 @@ public class Calculator {
         int oper = 0;
         int res = 0;
         char ch = ' ';
+        String keepNum = "";
 
         while (true){
             ch = expression.substring(index,index+1).charAt(0);
@@ -38,7 +41,23 @@ public class Calculator {
                 }
             } else {
                 //数则直接入栈
-                numStack.push(ch - 48);
+                //numStack.push(ch - 48);
+                //处理多位数时，不能发现是一个数立即入栈，因为他可能是多位数
+                //在处理数 需要向expression的表达式的index 后再看一位，如果是数就进行扫描，如果是符号才入栈
+                //需要定义变量字符串，用于拼接
+
+                //处理多位数
+                keepNum += ch;
+
+                if(index == expression.length() - 1){
+                    numStack.push(Integer.parseInt(keepNum));
+                } else{
+                    if(operStack.isOper(expression.substring(index+1,index+2).charAt(0))){
+                        //如果后一位是运算符则入栈
+                        numStack.push(Integer.parseInt(keepNum));
+                        keepNum = "";
+                    }
+                }
             }
 
             //让index+1，判断是否扫描到expression最后
