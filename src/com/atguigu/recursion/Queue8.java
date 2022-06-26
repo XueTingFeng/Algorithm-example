@@ -12,12 +12,14 @@ public class Queue8 {
     int [] array = new int[max];
 
     static int count = 0;
+    static int judgeCount = 0;
 
     public static void main(String[] args) {
 
         Queue8 queue8 = new Queue8();
         queue8.check(0);
         System.out.printf("一共有%d解法",count);
+        System.out.printf("一共判断冲突%d次",judgeCount);
     }
 
     //放置第n个皇后
@@ -44,6 +46,7 @@ public class Queue8 {
      * @return
      */
     private boolean judge(int n){
+        judgeCount++;
         for (int i = 0; i < n; i++) {
             //array[i] == array[n] 判断din个皇后是否和前面的n-1个皇后在同一列
             //Math.abs(n-i) == Math.abs(array[n] - array[i]) 判断是否同一斜线
