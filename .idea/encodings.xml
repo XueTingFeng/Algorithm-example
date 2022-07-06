@@ -11,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/src/com/atguigu/sort/BubbleSort.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/sort/MergeSort.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/sort/QuickSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/atguigu/sort/RedixSort.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/sort/ShellSort.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/sort/insertSort.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/sort/selectSort.java" charset="UTF-8" />
