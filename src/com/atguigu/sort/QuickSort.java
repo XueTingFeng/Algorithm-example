@@ -31,7 +31,7 @@ public class QuickSort {
         String dateStr2 = simpleDateFormat2.format(date2);
         System.out.println(dateStr2);
 
-
+        System.out.println(Arrays.toString(arr));
 
 
     }
