@@ -215,6 +215,9 @@ class HeroNode{
         if(this.right != null){
             this.right.delNode(no);
         }
+
+        //todo
+        //删除节点如果有子节点，将子节点上移
     }
 
     //前序遍历
