@@ -21,7 +21,7 @@ public class HeapSort {
 //        System.out.println("第一次排序" + Arrays.toString(arr));
 //
         //
-        for (int i = arr.length; i > 0; i--) {
+        for (int i = arr.length / 2 - 1; i >= 0; i--) {
             adjustHeap(arr,i, arr.length);
         }
 
@@ -29,10 +29,10 @@ public class HeapSort {
             temp = arr[j];
             arr[j] = arr[0];
             arr[0] = temp;
-            adjustHeap(arr,0,arr.length);
+            adjustHeap(arr,0,j);
         }
 
-        System.out.println(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
     //将数组(二叉树),调整成大顶堆
@@ -49,18 +49,18 @@ public class HeapSort {
         int temp = arr[i];//取出当前元素的值，保存在临时变量
 
         //k = i * 2 + 1 k是i的左子节点
-//        for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
-//            if(arr[k] < arr[k+1]){ //左子节点的值小于右子节点的值
-//                k++;//k 指向右子节点
-//            }
-//            if(arr[k] > temp){ //如果子节点大于父节点
-//                arr[i] = arr[k]; //把较大的值赋给当前节点
-//                i = k; //i指向k，继续循环比较
-//            } else {
-//                break;
-//            }
-//        }
-//        //当循环结束后，我们已经将以i为父节点树的最大值，放在了最顶（局部）
-//        arr[i] = temp;//将temp值放到调整后的位置
+        for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
+            if(k + 1 < length && arr[k] < arr[k+1]){ //左子节点的值小于右子节点的值
+                k++;//k 指向右子节点
+            }
+            if(arr[k] > temp){ //如果子节点大于父节点
+                arr[i] = arr[k]; //把较大的值赋给当前节点
+                i = k; //i指向k，继续循环比较
+            } else {
+                break;
+            }
+        }
+        //当循环结束后，我们已经将以i为父节点树的最大值，放在了最顶（局部）
+        arr[i] = temp;//将temp值放到调整后的位置
     }
 }
