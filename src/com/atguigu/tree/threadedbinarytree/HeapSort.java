@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class HeapSort {
     public static void main(String[] args) {
-        int[] arr = {4,6,8,5,9};
-        heapSort(arr);
+        int[] arr = {4,6,8,5,9,-11,999};
+        heapSort2(arr);
     }
 
     //堆排序方法
@@ -62,5 +62,45 @@ public class HeapSort {
         }
         //当循环结束后，我们已经将以i为父节点树的最大值，放在了最顶（局部）
         arr[i] = temp;//将temp值放到调整后的位置
+    }
+
+    public static void heapSort2(int[] arr){
+//        adjustHeap2(arr,1,arr.length);
+//        System.out.println(Arrays.toString(arr));
+
+        int temp = 0;
+        //构建堆
+        for (int i = arr.length / 2 - 1; i >= 0 ; i--) {
+            adjustHeap2(arr,i, arr.length);
+        }
+
+        //堆顶与堆底交换
+        for (int j = arr.length - 1; j > 0 ; j--) {
+            temp = arr[j];
+            arr[j] = arr[0];
+            arr[0] = temp;
+            adjustHeap2(arr,0,j);
+        }
+
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void adjustHeap2(int[] arr,int i,int length){
+        int temp = arr[i];
+
+        for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
+            //判断右子节点有没有越界   判断左边是否小于右边
+            if(k + 1 < length && arr[k] < arr[k+1]){
+                //移动到右节点
+                k++;
+            }
+            if(arr[k] > temp){
+                arr[i] = arr[k];
+                i = k;
+            } else {
+                break;
+            }
+        }
+        arr[i] = temp;
     }
 }
