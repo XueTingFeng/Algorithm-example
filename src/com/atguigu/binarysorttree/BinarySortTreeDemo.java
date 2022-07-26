@@ -73,6 +73,8 @@ class BinarySortTree{
         return target.value;
     }
 
+    //todo 左子树找最大的
+
     //删除节点
     public void delNode(int value){
         if(root == null){
