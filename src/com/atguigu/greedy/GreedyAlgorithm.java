@@ -1,4 +1,4 @@
-﻿package com.atguigu.greedy;
+package com.atguigu.greedy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,5 +82,7 @@ public class GreedyAlgorithm {
                 allAreas.removeAll(broadcasts.get(maxKey));
             }
         }
+
+        System.out.println("得到的结果" + selects);
     }
 }
