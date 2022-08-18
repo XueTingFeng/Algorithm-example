@@ -60,8 +60,11 @@ public class GreedyAlgorithm {
 
         //定义maxkey,最大未覆盖的key
         String maxKey = null;
+
+        int maxTemp;
         while (allAreas.size() != 0){
             maxKey = null;
+            maxTemp = 0;
             //遍历broadcasts,取出对应的key
             for (String key :
                     broadcasts.keySet()) {
@@ -71,8 +74,9 @@ public class GreedyAlgorithm {
                 //求出交集,交集会赋给tempSet
                 tempSet.retainAll(allAreas);
                 if(tempSet.size() > 0 &&
-                        (maxKey == null || tempSet.size() > broadcasts.get(maxKey).size())){
+                        (maxKey == null || tempSet.size() > maxTemp)){
                     maxKey = key;
+                    maxTemp = tempSet.size();
                 }
             }
             //将maxKey加入selects
