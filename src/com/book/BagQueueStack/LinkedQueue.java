@@ -1,4 +1,4 @@
-﻿package com.book.BagQueueStack;
+package com.book.BagQueueStack;
 
 //链表实现队列
 public class LinkedQueue {

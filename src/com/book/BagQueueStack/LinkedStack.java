@@ -1,9 +1,13 @@
-﻿package com.book.BagQueueStack;
+package com.book.BagQueueStack;
 
 //链表构建栈
 public class LinkedStack {
     public static void main(String[] args) {
+        MyStack myStack = new MyStack();
 
+        myStack.push("1");
+        myStack.push("2");
+        System.out.println(myStack);
     }
 }
 
@@ -15,6 +19,14 @@ class MyStack{
     private class Node {
         String data;
         Node next;
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "data='" + data + '\'' +
+                    ", next=" + next +
+                    '}';
+        }
     }
 
     //栈是否为空
@@ -44,6 +56,13 @@ class MyStack{
         return data;
     }
 
+    @Override
+    public String toString() {
+        return "MyStack{" +
+                "first=" + first +
+//                ", n=" + n +
+                '}';
+    }
 }
 
 

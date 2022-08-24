@@ -1,4 +1,4 @@
-﻿package com.book.BagQueueStack;
+package com.book.BagQueueStack;
 import java.util.Iterator;
 
 
