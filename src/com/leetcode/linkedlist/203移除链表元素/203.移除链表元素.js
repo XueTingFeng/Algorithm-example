@@ -11,15 +11,23 @@
  * @return {ListNode}
  */
 var removeElements = function(head, val) {
-    let header = new ListNode(-1);
-    header.next = head
-    let cur = header
-    while(cur.next != null){
-        if(cur.next.val == val){
-            cur.next = cur.next.next
-        } else {
-            cur = cur.next
-        }
+    //迭代，虚拟头节点
+    // let header = new ListNode(-1);
+    // header.next = head
+    // let cur = header
+    // while(cur.next != null){
+    //     if(cur.next.val == val){
+    //         cur.next = cur.next.next
+    //     } else {
+    //         cur = cur.next
+    //     }
+    // }
+    // return header.next
+
+    //递归
+    if(head === null){
+        return head;
     }
-    return header.next
+    head.next = removeElements(head.next,val)
+    return head.val === val ? head.next : head;
 };
