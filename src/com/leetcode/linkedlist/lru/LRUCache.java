@@ -3,6 +3,7 @@ package com.leetcode.linkedlist.lru;
 import java.util.HashMap;
 import java.util.Map;
 
+//146.缓存机制
 class LRUCache {
 
     class DLinkedNode{
