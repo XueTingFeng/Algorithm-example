@@ -12,6 +12,16 @@ public class UF {
         }
     }
 
+    public static void main(String[] args) {
+        UF uf = new UF(10);
+        uf.union(4,3);
+        boolean connected = uf.connected(4, 3);
+        System.out.println(connected);
+        uf.union(3,8);
+        boolean connected1 = uf.connected(4, 8);
+        System.out.println(connected1);
+    }
+
     public int count(){
         return count;
     }
