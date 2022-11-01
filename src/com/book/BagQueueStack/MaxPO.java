@@ -35,7 +35,7 @@ public class MaxPO<Key extends  Comparable<Key>> {
         exch(1,N--);
         pq[N+1] = null;
         sink(1);
-        return max
+        return max;
     }
 
     private boolean less(int i,int j){
