@@ -25,5 +25,5 @@ const postOrder = (root) => {
     }
     postOrder(root.left)
     postOrder(root.right)
-    postRes.push(post)
+    postRes.push(root)
 }
